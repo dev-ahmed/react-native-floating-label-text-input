@@ -138,8 +138,8 @@ class FloatLabelTextField extends Component {
                 defaultValue={this.props.defaultValue}
                 value={this.state.text}
                 maxLength={this.props.maxLength}
-                onFocus={this.setFocus}
-                onBlur={this.unsetFocus}
+                onFocus={() => this.setFocus()}
+                onBlur={() => this.unsetFocus()}
                 onChangeText={value => this.setText(value)}
               />
             </TextFieldHolder>
@@ -169,23 +169,23 @@ class FloatLabelTextField extends Component {
     this.inputRef().clear();
   };
 
-  setFocus = () => {
+  setFocus() {
     this.setState({
       focused: true,
     });
     try {
       return this.props.onFocus();
     } catch (_error) {}
-  };
+  }
 
-  unsetFocus = () => {
+  unsetFocus() {
     this.setState({
       focused: false,
     });
     try {
       return this.props.onBlur();
     } catch (_error) {}
-  };
+  }
 
   labelStyle = () => {
     if (this.state.focused) {
